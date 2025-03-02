@@ -18,37 +18,6 @@ class TodoService {
     }
   }
 
-  Future<TaskModel> createTodo(TaskModel todo) async {
-    final response = await http.post(
-      Uri.parse(_baseUrl),
-      body: json.encode(todo.toJson()),
-      headers: {'Content-Type': 'application/json'},
-    );
-    if (response.statusCode == 201) {
-      return TaskModel.fromJson(json.decode(response.body));
-    } else {
-      throw Exception('Failed to create todo');
-    }
-  }
-
-  Future<TaskModel> updateTodo(TaskModel todo) async {
-    final response = await http.put(
-      Uri.parse('$_baseUrl/${todo.id}'),
-      body: json.encode(todo.toJson()),
-      headers: {'Content-Type': 'application/json'},
-    );
-    if (response.statusCode == 200) {
-      return TaskModel.fromJson(json.decode(response.body));
-    } else {
-      throw Exception('Failed to update todo');
-    }
-  }
-
-  Future<void> deleteTodo(int id) async {
-    final response = await http.delete(Uri.parse('$_baseUrl/$id'));
-    if (response.statusCode != 200) {
-      throw Exception('Failed to delete todo');
-    }
-  }
+  
 }
 
